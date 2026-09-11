@@ -1,0 +1,34 @@
+{
+    "name": "rehla/topups",
+    "description": "Rehla TopUps Package",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "rehla/core": "@dev",
+        "rehla/identity": "@dev",
+        "rehla/documents": "@dev",
+        "rehla/wallet": "@dev",
+        "rehla/audit": "@dev",
+        "rehla/notifications": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rehla\\TopUps\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rehla\\TopUps\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rehla\\TopUps\\TopUpsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

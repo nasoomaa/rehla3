@@ -1,0 +1,29 @@
+{
+    "name": "rehla/identity",
+    "description": "Rehla Identity Package",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "rehla/core": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rehla\\Identity\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rehla\\Identity\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rehla\\Identity\\IdentityServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

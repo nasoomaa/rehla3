@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e76ec8bc703602e2ce8d219c5cb16f78",
+    "content-hash": "8875bc9fc615e069bc15982b7dcbcdb0",
     "packages": [
         {
             "name": "brick/math",
@@ -3265,6 +3265,826 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.9.3"
             },
             "time": "2026-06-18T03:57:49+00:00"
+        },
+        {
+            "name": "rehla/admin",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Admin",
+                "reference": "bfb3c661c3b58402d2b418778d316610d06fd336"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/catalog": "@dev",
+                "rehla/content": "@dev",
+                "rehla/core": "@dev",
+                "rehla/documents": "@dev",
+                "rehla/forms": "@dev",
+                "rehla/fulfillment": "@dev",
+                "rehla/identity": "@dev",
+                "rehla/notifications": "@dev",
+                "rehla/orders": "@dev",
+                "rehla/reporting": "@dev",
+                "rehla/topups": "@dev",
+                "rehla/travelers": "@dev",
+                "rehla/wallet": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Admin\\AdminServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Admin\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Admin\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Admin Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/api",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Api",
+                "reference": "02b85f909dcfa08678990971e3ff8fc3f6ead26e"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/catalog": "@dev",
+                "rehla/core": "@dev",
+                "rehla/documents": "@dev",
+                "rehla/forms": "@dev",
+                "rehla/fulfillment": "@dev",
+                "rehla/identity": "@dev",
+                "rehla/notifications": "@dev",
+                "rehla/orders": "@dev",
+                "rehla/purchasing": "@dev",
+                "rehla/topups": "@dev",
+                "rehla/travelers": "@dev",
+                "rehla/wallet": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Api\\ApiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Api\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Api\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Api Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/audit",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Audit",
+                "reference": "cb057e2e85066a636805f59427371d3cd2bc061e"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/core": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Audit\\AuditServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Audit\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Audit\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Audit Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/catalog",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Catalog",
+                "reference": "eb4c295c8bfbc3184f59345563797cb76b3bd329"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/core": "@dev",
+                "rehla/documents": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Catalog\\CatalogServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Catalog\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Catalog\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Catalog Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/content",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Content",
+                "reference": "a16d42e37ab7fbef7c4f84dab13e194e8337dc03"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/core": "@dev",
+                "rehla/identity": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Content\\ContentServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Content\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Content\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Content Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/core",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Core",
+                "reference": "cb155f8de7490d828deb9f89b1acfa3af6b19002"
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Core\\CoreServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Core\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Core\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Core Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/documents",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Documents",
+                "reference": "bfd356f676b121ec812e4b275734b9291668bc5d"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/core": "@dev",
+                "rehla/identity": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Documents\\DocumentsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Documents\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Documents\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Documents Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/forms",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Forms",
+                "reference": "751ba1e8f4ce0db5a47750f7a243b3bb38b70fba"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/catalog": "@dev",
+                "rehla/core": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Forms\\FormsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Forms\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Forms\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Forms Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/fulfillment",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Fulfillment",
+                "reference": "f614cb566b8eace4fb7368f6b5c70d8e3bae8898"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/core": "@dev",
+                "rehla/documents": "@dev",
+                "rehla/forms": "@dev",
+                "rehla/identity": "@dev",
+                "rehla/notifications": "@dev",
+                "rehla/orders": "@dev",
+                "rehla/purchasing": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Fulfillment\\FulfillmentServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Fulfillment\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Fulfillment\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Fulfillment Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/identity",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Identity",
+                "reference": "6739e58d065c8118cd297e50d3277e2ae2ae3c28"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/core": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Identity\\IdentityServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Identity\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Identity\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Identity Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/integrations",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Integrations",
+                "reference": "896fdf197450698dffe5f63a45f88afa1d7384e6"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/core": "@dev",
+                "rehla/fulfillment": "@dev",
+                "rehla/notifications": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Integrations\\IntegrationsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Integrations\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Integrations\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Integrations Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/notifications",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Notifications",
+                "reference": "19453812c1f91bc8dbb8cc72aa6860deff1d62dd"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/core": "@dev",
+                "rehla/identity": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Notifications\\NotificationsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Notifications\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Notifications\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Notifications Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/orders",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Orders",
+                "reference": "da83e2ae9a3f428d17289c3d47f7ef5b3c665dfd"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/core": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Orders\\OrdersServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Orders\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Orders\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Orders Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/purchasing",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Purchasing",
+                "reference": "b72bf092da09917ce4c2b846192ed0eaf909af4e"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/catalog": "@dev",
+                "rehla/core": "@dev",
+                "rehla/documents": "@dev",
+                "rehla/forms": "@dev",
+                "rehla/identity": "@dev",
+                "rehla/notifications": "@dev",
+                "rehla/orders": "@dev",
+                "rehla/travelers": "@dev",
+                "rehla/wallet": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Purchasing\\PurchasingServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Purchasing\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Purchasing\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Purchasing Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/reporting",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Reporting",
+                "reference": "be488f3823f4dafa2c0f86852a77d50dbe410ba8"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/catalog": "@dev",
+                "rehla/core": "@dev",
+                "rehla/fulfillment": "@dev",
+                "rehla/identity": "@dev",
+                "rehla/notifications": "@dev",
+                "rehla/orders": "@dev",
+                "rehla/topups": "@dev",
+                "rehla/travelers": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Reporting\\ReportingServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Reporting\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Reporting\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Reporting Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/topups",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/TopUps",
+                "reference": "d3424b10dbdf4989235b8f2c849a65cf9da77411"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/core": "@dev",
+                "rehla/documents": "@dev",
+                "rehla/identity": "@dev",
+                "rehla/notifications": "@dev",
+                "rehla/wallet": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\TopUps\\TopUpsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\TopUps\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\TopUps\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla TopUps Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/travelers",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Travelers",
+                "reference": "7c1bfad255f1d5764148036a595481cbbe4f47f2"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/core": "@dev",
+                "rehla/identity": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Travelers\\TravelersServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Travelers\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Travelers\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Travelers Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/wallet",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Wallet",
+                "reference": "a52916441383fd48101e315608905ad431e9b55c"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/audit": "@dev",
+                "rehla/core": "@dev",
+                "rehla/identity": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Wallet\\WalletServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Wallet\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Wallet\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Wallet Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "rehla/web",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/Rehla/Web",
+                "reference": "d6fbe6ed0e7b4e7e8528ffa5ddfe3b35d04db75c"
+            },
+            "require": {
+                "php": "^8.2",
+                "rehla/catalog": "@dev",
+                "rehla/content": "@dev",
+                "rehla/core": "@dev",
+                "rehla/documents": "@dev",
+                "rehla/forms": "@dev",
+                "rehla/fulfillment": "@dev",
+                "rehla/identity": "@dev",
+                "rehla/integrations": "@dev",
+                "rehla/notifications": "@dev",
+                "rehla/orders": "@dev",
+                "rehla/purchasing": "@dev",
+                "rehla/topups": "@dev",
+                "rehla/travelers": "@dev",
+                "rehla/wallet": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rehla\\Web\\WebServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rehla\\Web\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rehla\\Web\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Rehla Web Package",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "symfony/clock",
@@ -9753,8 +10573,12 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": {},
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "rehla/admin": 20,
+        "rehla/api": 20,
+        "rehla/web": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -1,0 +1,31 @@
+{
+    "name": "rehla/integrations",
+    "description": "Rehla Integrations Package",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "rehla/core": "@dev",
+        "rehla/notifications": "@dev",
+        "rehla/fulfillment": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rehla\\Integrations\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rehla\\Integrations\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rehla\\Integrations\\IntegrationsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

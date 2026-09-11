@@ -1,0 +1,31 @@
+{
+    "name": "rehla/catalog",
+    "description": "Rehla Catalog Package",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "rehla/core": "@dev",
+        "rehla/documents": "@dev",
+        "rehla/audit": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rehla\\Catalog\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rehla\\Catalog\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rehla\\Catalog\\CatalogServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

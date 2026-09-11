@@ -1,0 +1,29 @@
+{
+    "name": "rehla/orders",
+    "description": "Rehla Orders Package",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "rehla/core": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rehla\\Orders\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rehla\\Orders\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rehla\\Orders\\OrdersServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

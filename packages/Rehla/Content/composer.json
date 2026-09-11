@@ -1,0 +1,31 @@
+{
+    "name": "rehla/content",
+    "description": "Rehla Content Package",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "rehla/core": "@dev",
+        "rehla/identity": "@dev",
+        "rehla/audit": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rehla\\Content\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rehla\\Content\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rehla\\Content\\ContentServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

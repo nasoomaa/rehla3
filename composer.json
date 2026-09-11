@@ -8,7 +8,10 @@
     "require": {
         "php": "^8.3",
         "laravel/framework": "^13.17",
-        "laravel/tinker": "^3.0"
+        "laravel/tinker": "^3.0",
+        "rehla/web": "@dev",
+        "rehla/api": "@dev",
+        "rehla/admin": "@dev"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -84,6 +87,15 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/Rehla/*",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

@@ -1,0 +1,30 @@
+{
+    "name": "rehla/notifications",
+    "description": "Rehla Notifications Package",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "rehla/core": "@dev",
+        "rehla/identity": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rehla\\Notifications\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rehla\\Notifications\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rehla\\Notifications\\NotificationsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
