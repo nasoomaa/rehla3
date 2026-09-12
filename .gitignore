@@ -30,3 +30,5 @@ Homestead.yaml
 Thumbs.db
 /test-results/
 /playwright-report/
+restore-rehearsal-report.json
+
