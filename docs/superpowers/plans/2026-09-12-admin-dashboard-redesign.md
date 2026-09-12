@@ -8,7 +8,7 @@
 
 **Tech Stack:** Laravel 13.x, PHP 8.5+, PostgreSQL 18, Blade, Vanilla CSS (tokens & glassmorphism), Vanilla JS (accessible drawers & modals), Pest PHP.
 
-**Spec:** [docs/superpowers/specs/2026-09-12-admin-dashboard-redesign-design.md](file:///home/ubuntu/rehla4/docs/superpowers/specs/2026-09-12-admin-dashboard-redesign-design.md)
+**Spec:** [docs/superpowers/specs/2026-09-12-admin-dashboard-redesign-design.md](../specs/2026-09-12-admin-dashboard-redesign-design.md)
 
 ## Global Constraints
 - Currency: SDG (Sudanese Pound) strictly represented as integer minor units (`amount_minor`, scale 100). No floats.

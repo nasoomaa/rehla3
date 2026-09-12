@@ -36,7 +36,8 @@ it('manages bank accounts with full CRUD and active status toggle', function ():
 
     $updatedAccounts = app(ListAllBankAccounts::class)->execute();
     $updated = collect($updatedAccounts)->firstWhere('id', $account->id);
-    expect($updated->bankNameEn)->toBe('ONB Updated')
+    expect($updated)->not->toBeNull()
+        ->and($updated->bankNameEn)->toBe('ONB Updated')
         ->and($updated->beneficiaryName)->toBe('Rehla Travel Services');
 
     // 3. Deactivate bank account
@@ -45,5 +46,6 @@ it('manages bank accounts with full CRUD and active status toggle', function ():
 
     $deactivatedAccounts = app(ListAllBankAccounts::class)->execute();
     $deactivated = collect($deactivatedAccounts)->firstWhere('id', $account->id);
-    expect($deactivated->active)->toBeFalse();
+    expect($deactivated)->not->toBeNull()
+        ->and($deactivated->active)->toBeFalse();
 });

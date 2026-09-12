@@ -194,6 +194,10 @@
                                 <select class="admin-select" disabled>
                                     <option>Choose option...</option>
                                 </select>
+                            @elseif($f->type->value === 'number')
+                                <input type="number" class="admin-input" disabled placeholder="[Sample number: {{ $f->key }}]">
+                            @elseif($f->type->value === 'date')
+                                <input type="date" class="admin-input" disabled>
                             @else
                                 <input type="text" class="admin-input" disabled placeholder="[Sample input: {{ $f->key }}]">
                             @endif

@@ -65,12 +65,14 @@ it('performs full CRUD lifecycle on services', function (): void {
         ->assertRedirect('/admin/services');
 
     $published = collect(app(ListAllServices::class)->execute())->firstWhere('id', $service->id);
-    expect($published->status->value)->toBe('published');
+    expect($published)->not->toBeNull()
+        ->and($published->status->value)->toBe('published');
 
     // 5. Deactivate the now-published service
     $this->actingAs($user, 'admin')->post("/admin/services/{$service->id}/deactivate")
         ->assertRedirect('/admin/services');
 
     $deactivated = collect(app(ListAllServices::class)->execute())->firstWhere('id', $service->id);
-    expect($deactivated->status->value)->toBe('deactivated');
+    expect($deactivated)->not->toBeNull()
+        ->and($deactivated->status->value)->toBe('deactivated');
 });

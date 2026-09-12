@@ -123,10 +123,7 @@
                             Approving will immediately credit the customer's wallet and post an immutable ledger entry.
                         </div>
                     </div>
-                    <div class="admin-form-group">
-                        <label class="admin-label" for="notes_{{ $topUp->id }}">Reviewer Verification Notes</label>
-                        <input type="text" id="notes_{{ $topUp->id }}" name="notes" class="admin-input" value="Verified deposit receipt with bank statement">
-                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="admin-btn admin-btn-ghost" onclick="closeModal('approve-topup-modal-{{ $topUp->id }}')">Cancel</button>

@@ -33,7 +33,8 @@ final class BankAccountController extends Controller
             'bank_name_ar' => ['required', 'string', 'max:255'],
             'beneficiary_name' => ['required', 'string', 'max:255'],
             'account_number' => ['required', 'string', 'max:100'],
-            'sort_order' => ['nullable', 'integer'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
+            'logo_document_id' => ['nullable', 'uuid'],
         ]);
 
         $actorId = (string) Auth::guard('admin')->id();
@@ -43,6 +44,7 @@ final class BankAccountController extends Controller
             bankNameAr: $validated['bank_name_ar'],
             beneficiaryName: $validated['beneficiary_name'],
             accountNumber: $validated['account_number'],
+            logoDocumentId: $validated['logo_document_id'] ?? null,
             sortOrder: (int) ($validated['sort_order'] ?? 0),
         ), actorId: $actorId);
 
@@ -56,7 +58,8 @@ final class BankAccountController extends Controller
             'bank_name_ar' => ['required', 'string', 'max:255'],
             'beneficiary_name' => ['required', 'string', 'max:255'],
             'account_number' => ['required', 'string', 'max:100'],
-            'sort_order' => ['nullable', 'integer'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
+            'logo_document_id' => ['nullable', 'uuid'],
         ]);
 
         $actorId = (string) Auth::guard('admin')->id();
@@ -68,6 +71,7 @@ final class BankAccountController extends Controller
                 bankNameAr: $validated['bank_name_ar'],
                 beneficiaryName: $validated['beneficiary_name'],
                 accountNumber: $validated['account_number'],
+                logoDocumentId: $request->has('logo_document_id') ? $validated['logo_document_id'] : null,
                 sortOrder: (int) ($validated['sort_order'] ?? 0),
             ),
             actorId: $actorId,

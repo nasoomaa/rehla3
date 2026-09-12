@@ -146,24 +146,24 @@
             @method('PUT')
             <div class="modal-body">
                 <div class="admin-form-group">
-                    <label class="admin-label">Bank Name (English)</label>
-                    <input type="text" name="bank_name_en" class="admin-input" value="{{ $acc->bankNameEn }}" required>
+                    <label class="admin-label" for="edit_bank_name_en_{{ $acc->id }}">Bank Name (English)</label>
+                    <input type="text" id="edit_bank_name_en_{{ $acc->id }}" name="bank_name_en" class="admin-input" value="{{ $acc->bankNameEn }}" required>
                 </div>
                 <div class="admin-form-group">
-                    <label class="admin-label">Bank Name (Arabic)</label>
-                    <input type="text" name="bank_name_ar" class="admin-input" value="{{ $acc->bankNameAr }}" required>
+                    <label class="admin-label" for="edit_bank_name_ar_{{ $acc->id }}">Bank Name (Arabic)</label>
+                    <input type="text" id="edit_bank_name_ar_{{ $acc->id }}" name="bank_name_ar" class="admin-input" value="{{ $acc->bankNameAr }}" required>
                 </div>
                 <div class="admin-form-group">
-                    <label class="admin-label">Beneficiary Name</label>
-                    <input type="text" name="beneficiary_name" class="admin-input" value="{{ $acc->beneficiaryName }}" required>
+                    <label class="admin-label" for="edit_beneficiary_name_{{ $acc->id }}">Beneficiary Name</label>
+                    <input type="text" id="edit_beneficiary_name_{{ $acc->id }}" name="beneficiary_name" class="admin-input" value="{{ $acc->beneficiaryName }}" required>
                 </div>
                 <div class="admin-form-group">
-                    <label class="admin-label">Account Number</label>
-                    <input type="text" name="account_number" class="admin-input" value="{{ $acc->accountNumber }}" required>
+                    <label class="admin-label" for="edit_account_number_{{ $acc->id }}">Account Number</label>
+                    <input type="text" id="edit_account_number_{{ $acc->id }}" name="account_number" class="admin-input" value="{{ $acc->accountNumber }}" required>
                 </div>
                 <div class="admin-form-group">
-                    <label class="admin-label">Sort Order</label>
-                    <input type="number" name="sort_order" class="admin-input" value="{{ $acc->sortOrder }}" min="0">
+                    <label class="admin-label" for="edit_sort_order_{{ $acc->id }}">Sort Order</label>
+                    <input type="number" id="edit_sort_order_{{ $acc->id }}" name="sort_order" class="admin-input" value="{{ $acc->sortOrder }}" min="0">
                 </div>
             </div>
             <div class="modal-footer">

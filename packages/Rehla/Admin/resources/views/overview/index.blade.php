@@ -8,7 +8,7 @@
     <div class="stat-card">
         <div class="stat-title">Total Orders</div>
         <div class="stat-value">{{ number_format($metrics->totalOrders) }}</div>
-        <div style="font-size: 0.75rem; color: var(--admin-text-muted); margin-top: 0.35rem;">Lifetime booking volume</div>
+        <div style="font-size: 0.75rem; color: var(--admin-text-muted); margin-top: 0.35rem;">Trailing 30-day booking volume</div>
     </div>
     <div class="stat-card">
         <div class="stat-title">Gross Revenue</div>

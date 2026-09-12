@@ -1039,16 +1039,47 @@
                 sidebarBackdrop.addEventListener('click', closeSidebar);
             }
 
-            // 3. Sliding Drawers & Modals Handlers
+            // 3. Sliding Drawers & Modals Handlers with Focus Management & Inert Trapping
             const modalBackdrop = document.getElementById('admin-modal-backdrop');
             const drawerBackdrop = document.getElementById('admin-drawer-backdrop');
+
+            const setBackgroundInert = (activeElement, isInert) => {
+                let cur = activeElement;
+                while (cur && cur !== document.body) {
+                    if (cur.parentElement) {
+                        Array.from(cur.parentElement.children).forEach(sibling => {
+                            if (sibling !== cur && sibling !== drawerBackdrop && sibling !== modalBackdrop && sibling.tagName !== 'SCRIPT') {
+                                if (isInert) {
+                                    sibling.setAttribute('inert', '');
+                                } else {
+                                    sibling.removeAttribute('inert');
+                                }
+                            }
+                        });
+                    }
+                    cur = cur.parentElement;
+                }
+            };
+
+            const focusDialog = (dialog) => {
+                const focusables = dialog.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+                if (focusables.length > 0) {
+                    focusables[0].focus();
+                } else {
+                    dialog.setAttribute('tabindex', '-1');
+                    dialog.focus();
+                }
+            };
 
             window.openDrawer = (drawerId) => {
                 const drawer = document.getElementById(drawerId);
                 if (drawer && drawerBackdrop) {
+                    drawer._triggerElement = document.activeElement;
                     drawer.classList.add('active');
                     drawerBackdrop.classList.add('active');
                     document.body.style.overflow = 'hidden';
+                    setBackgroundInert(drawer, true);
+                    focusDialog(drawer);
                 }
             };
 
@@ -1058,15 +1089,23 @@
                     drawer.classList.remove('active');
                     drawerBackdrop.classList.remove('active');
                     document.body.style.overflow = '';
+                    setBackgroundInert(drawer, false);
+                    if (drawer._triggerElement && typeof drawer._triggerElement.focus === 'function') {
+                        drawer._triggerElement.focus();
+                        drawer._triggerElement = null;
+                    }
                 }
             };
 
             window.openModal = (modalId) => {
                 const modal = document.getElementById(modalId);
                 if (modal && modalBackdrop) {
+                    modal._triggerElement = document.activeElement;
                     modal.classList.add('active');
                     modalBackdrop.classList.add('active');
                     document.body.style.overflow = 'hidden';
+                    setBackgroundInert(modal, true);
+                    focusDialog(modal);
                 }
             };
 
@@ -1076,34 +1115,56 @@
                     modal.classList.remove('active');
                     modalBackdrop.classList.remove('active');
                     document.body.style.overflow = '';
+                    setBackgroundInert(modal, false);
+                    if (modal._triggerElement && typeof modal._triggerElement.focus === 'function') {
+                        modal._triggerElement.focus();
+                        modal._triggerElement = null;
+                    }
                 }
             };
 
-            // Global Esc key listener for dialogs
+            window.closeAllDialogs = () => {
+                document.querySelectorAll('.admin-modal.active').forEach(m => closeModal(m.id));
+                document.querySelectorAll('.admin-drawer.active').forEach(d => closeDrawer(d.id));
+            };
+
+            // Global Esc and Tab key listener for dialogs
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
-                    document.querySelectorAll('.admin-modal.active').forEach(m => m.classList.remove('active'));
-                    document.querySelectorAll('.admin-drawer.active').forEach(d => d.classList.remove('active'));
-                    if (modalBackdrop) modalBackdrop.classList.remove('active');
-                    if (drawerBackdrop) drawerBackdrop.classList.remove('active');
-                    document.body.style.overflow = '';
+                    closeAllDialogs();
+                }
+
+                if (e.key === 'Tab') {
+                    const activeDialog = document.querySelector('.admin-modal.active, .admin-drawer.active');
+                    if (activeDialog) {
+                        const focusables = Array.from(activeDialog.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+                        if (focusables.length > 0) {
+                            const first = focusables[0];
+                            const last = focusables[focusables.length - 1];
+                            if (e.shiftKey) {
+                                if (document.activeElement === first || !activeDialog.contains(document.activeElement)) {
+                                    e.preventDefault();
+                                    last.focus();
+                                }
+                            } else {
+                                if (document.activeElement === last || !activeDialog.contains(document.activeElement)) {
+                                    e.preventDefault();
+                                    first.focus();
+                                }
+                            }
+                        } else {
+                            e.preventDefault();
+                        }
+                    }
                 }
             });
 
             if (modalBackdrop) {
-                modalBackdrop.addEventListener('click', () => {
-                    document.querySelectorAll('.admin-modal.active').forEach(m => m.classList.remove('active'));
-                    modalBackdrop.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
+                modalBackdrop.addEventListener('click', closeAllDialogs);
             }
 
             if (drawerBackdrop) {
-                drawerBackdrop.addEventListener('click', () => {
-                    document.querySelectorAll('.admin-drawer.active').forEach(d => d.classList.remove('active'));
-                    drawerBackdrop.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
+                drawerBackdrop.addEventListener('click', closeAllDialogs);
             }
 
             // 4. Live Table Search Filter Utility

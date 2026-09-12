@@ -10,15 +10,15 @@ use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 use Rehla\Identity\Actions\AssignRole;
 use Rehla\Identity\Actions\RevokeRole;
-use Rehla\Identity\Queries\ListCustomers;
 use Rehla\Identity\Queries\ListRolesAndAbilities;
+use Rehla\Identity\Queries\ListStaffUsers;
 
 final class RolePermissionController extends Controller
 {
-    public function index(ListRolesAndAbilities $listRolesAndAbilities, ListCustomers $listCustomers): View
+    public function index(ListRolesAndAbilities $listRolesAndAbilities, ListStaffUsers $listStaffUsers): View
     {
         $roles = $listRolesAndAbilities->execute();
-        $staffUsers = $listCustomers->execute();
+        $staffUsers = $listStaffUsers->execute();
 
         return view('rehla-admin::roles.index', [
             'roles' => $roles,

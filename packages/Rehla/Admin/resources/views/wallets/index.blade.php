@@ -34,7 +34,7 @@
                     <th>Wallet Identifier</th>
                     <th>Account Identifier</th>
                     <th>Currency</th>
-                    <th>Available Balance (SDG)</th>
+                    <th>Available Balance</th>
                     <th>Lock Version</th>
                 </tr>
             </thead>
@@ -58,7 +58,7 @@
                             <span style="font-weight: 800; font-family: monospace; font-size: 1.05rem; color: var(--admin-success);">
                                 {{ number_format($wallet->balanceMinor / 100, 2) }}
                             </span>
-                            <span style="font-size: 0.75rem; color: var(--admin-text-muted);">SDG</span>
+                            <span style="font-size: 0.75rem; color: var(--admin-text-muted);">{{ $wallet->currency }}</span>
                         </td>
                         <td>
                             <span class="admin-badge badge-neutral">v{{ $wallet->lockVersion }}</span>

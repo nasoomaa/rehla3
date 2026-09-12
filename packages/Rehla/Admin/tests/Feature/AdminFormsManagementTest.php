@@ -58,6 +58,12 @@ it('creates, updates draft schema, and publishes application form versions', fun
     ]);
     $updateRes->assertRedirect('/admin/application-forms');
 
+    $reloadedDrafts = app(ListFormVersions::class)->execute();
+    $reloadedDraft = collect($reloadedDrafts)->firstWhere('id', $draft->id);
+    expect($reloadedDraft)->not->toBeNull();
+    $fieldKeys = collect($reloadedDraft->fields)->pluck('key')->all();
+    expect($fieldKeys)->toContain('nationality');
+
     // 3. Publish form version
     $publishRes = $this->actingAs($user, 'admin')->post("/admin/application-forms/{$draft->id}/publish");
     $publishRes->assertRedirect('/admin/application-forms');
