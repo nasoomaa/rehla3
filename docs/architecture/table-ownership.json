@@ -45,6 +45,9 @@
     "cache_locks": "Core",
     "jobs": "Core",
     "job_batches": "Core",
-    "failed_jobs": "Core"
+    "failed_jobs": "Core",
+    "reporting_orders_summary": "Reporting",
+    "reporting_topups_summary": "Reporting",
+    "reporting_executions_summary": "Reporting"
   }
 }
