@@ -17,9 +17,9 @@ final class OrderShow extends Component
 {
     public string $orderId = '';
 
-    public function mount(string $orderId): void
+    public function mount(?string $orderId = null, ?string $id = null): void
     {
-        $this->orderId = $orderId;
+        $this->orderId = $orderId ?? $id ?? '';
         $accountId = (string) Auth::id();
 
         try {

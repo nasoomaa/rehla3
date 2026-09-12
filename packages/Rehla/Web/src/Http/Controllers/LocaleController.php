@@ -13,9 +13,10 @@ final class LocaleController
     {
         if (in_array($locale, ['en', 'ar'], true)) {
             session(['locale' => $locale]);
+            $request->session()->put('locale', $locale);
             app()->setLocale($locale);
         }
 
-        return redirect()->back();
+        return redirect()->back(fallback: '/');
     }
 }

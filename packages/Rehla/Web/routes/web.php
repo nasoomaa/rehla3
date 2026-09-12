@@ -13,12 +13,13 @@ use Rehla\Web\Http\Controllers\AuthController;
 use Rehla\Web\Http\Controllers\HomeController;
 use Rehla\Web\Http\Controllers\LocaleController;
 use Rehla\Web\Http\Controllers\ServiceController;
+use Rehla\Web\Http\Middleware\SetLocale;
 use Rehla\Web\Livewire\Account\CustomerActionResponse;
 use Rehla\Web\Livewire\Account\OrderCheckout;
 use Rehla\Web\Livewire\Account\OrderShow;
 use Rehla\Web\Livewire\Account\TopUpCreate;
 
-Route::middleware('web')->group(function (): void {
+Route::middleware(['web', SetLocale::class])->group(function (): void {
     // Locale switcher
     Route::get('/locale/{locale}', LocaleController::class)->name('locale');
 

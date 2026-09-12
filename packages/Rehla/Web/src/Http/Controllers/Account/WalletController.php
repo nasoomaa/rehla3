@@ -20,7 +20,7 @@ final class WalletController
 
         try {
             $balance = $getBalance->executeByAccount($userId);
-            $balanceMinor = $balance->balanceMinor;
+            $balanceMinor = $balance->minor;
             $entries = $listEntries->execute($balance->walletId);
         } catch (WalletNotFoundException) {
             $balanceMinor = 0;
