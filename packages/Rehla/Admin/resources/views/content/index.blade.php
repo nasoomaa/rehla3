@@ -82,7 +82,7 @@
 {{-- Slide-over Drawer: Create Content Block --}}
 <div class="admin-drawer" id="new-content-drawer">
     <div class="drawer-header">
-        <h3 class="drawer-title">Create / Update Content Block</h3>
+        <h3 class="drawer-title">Create Content Block</h3>
         <button type="button" class="close-dialog-btn" onclick="closeDrawer('new-content-drawer')">&times;</button>
     </div>
     <form method="POST" action="/admin/content" style="display: flex; flex-direction: column; flex: 1;">
