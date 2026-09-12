@@ -116,6 +116,12 @@ class ProductionScenarioSeeder extends Seeder
                 'role' => 'super_admin',
             ],
             [
+                'name' => 'System Administrator',
+                'email' => 'admin@rehla.com',
+                'password' => 'AdminSecret123!',
+                'role' => 'super_admin',
+            ],
+            [
                 'name' => 'Operations Lead',
                 'email' => 'ops@rehla.test',
                 'password' => 'StaffPass123!',
