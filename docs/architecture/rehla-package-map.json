@@ -10,7 +10,7 @@
     "Travelers": ["Core", "Identity", "Audit"],
     "Documents": ["Core", "Identity", "Audit"],
     "Wallet": ["Core", "Identity", "Audit"],
-    "Notifications": ["Core", "Identity"],
+    "Notifications": ["Core", "Identity", "Audit"],
     "TopUps": ["Core", "Identity", "Documents", "Wallet", "Audit", "Notifications"],
     "Orders": ["Core"],
     "Purchasing": ["Core", "Identity", "Catalog", "Forms", "Travelers", "Documents", "Wallet", "Orders", "Audit", "Notifications"],

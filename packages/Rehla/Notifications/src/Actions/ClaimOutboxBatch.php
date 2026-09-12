@@ -24,6 +24,7 @@ final class ClaimOutboxBatch
             $leaseCutoff = $now->subMinutes(self::LEASE_MINUTES);
 
             $query = OutboxMessage::whereNull('delivered_at')
+                ->whereNull('dead_lettered_at')
                 ->where('attempts', '<', self::MAX_ATTEMPTS)
                 ->where('available_at', '<=', $now)
                 ->where(function ($q) use ($leaseCutoff): void {

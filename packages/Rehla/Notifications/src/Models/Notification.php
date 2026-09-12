@@ -20,6 +20,8 @@ class Notification extends Model
     protected $fillable = [
         'id',
         'user_id',
+        'outbox_message_id',
+        'channel',
         'type',
         'payload',
         'read_at',

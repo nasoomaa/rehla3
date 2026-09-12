@@ -6,7 +6,8 @@
     "require": {
         "php": "^8.2",
         "rehla/core": "@dev",
-        "rehla/identity": "@dev"
+        "rehla/identity": "@dev",
+        "rehla/audit": "@dev"
     },
     "autoload": {
         "psr-4": {

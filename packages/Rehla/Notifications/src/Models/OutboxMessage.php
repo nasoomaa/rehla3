@@ -34,6 +34,7 @@ class OutboxMessage extends Model
         'locked_by',
         'attempts',
         'delivered_at',
+        'dead_lettered_at',
         'last_error',
         'created_at',
     ];
@@ -47,6 +48,7 @@ class OutboxMessage extends Model
             'available_at' => 'datetime',
             'locked_at' => 'datetime',
             'delivered_at' => 'datetime',
+            'dead_lettered_at' => 'datetime',
             'created_at' => 'datetime',
         ];
     }
