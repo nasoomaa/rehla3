@@ -43,7 +43,7 @@
                         <td>
                             <div style="display: flex; align-items: center; gap: 0.65rem;">
                                 <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.8rem;">
-                                    {{ strtoupper(substr($customer['name'] ?? 'C', 0, 1)) }}
+                                    {{ strtoupper(mb_substr($customer['name'] ?? 'C', 0, 1)) }}
                                 </div>
                                 <span style="font-weight: 600; color: var(--admin-text-primary);">{{ $customer['name'] }}</span>
                             </div>
@@ -82,7 +82,7 @@
         <div class="drawer-body">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 1.25rem; background: var(--admin-bg-surface-elevated); border-radius: var(--radius-md);">
                 <div class="user-avatar" style="width: 52px; height: 52px; font-size: 1.3rem;">
-                    {{ strtoupper(substr($customer['name'] ?? 'C', 0, 1)) }}
+                    {{ strtoupper(mb_substr($customer['name'] ?? 'C', 0, 1)) }}
                 </div>
                 <div>
                     <div style="font-size: 1.15rem; font-weight: 700; color: var(--admin-text-primary);">{{ $customer['name'] }}</div>
