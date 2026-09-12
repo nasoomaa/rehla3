@@ -71,7 +71,7 @@ R45.01,R45,Fulfillment,AssignExecutionStaffAction,assigned_staff_recorded,packag
 R46.01,R46,Audit,LogAuditEventAction,audit_log_immutable,packages/Rehla/Audit/tests/Integration/AuditImmutabilityTest.php,cannot update or delete an audit entry even with direct SQL,passed,commit:457b03a,
 R47.01,R47,Identity,CapabilityManager,capabilities_assigned_via_roles,packages/Rehla/Identity/tests/Integration/AuthorizationTest.php,staff with assigned ability and valid MFA is granted access,passed,commit:b36d414,
 R48.01,R48,Documents,StorePrivateDocumentAction,documents_private_by_default,packages/Rehla/Documents/tests/Unit/DocumentLifecycleTest.php,enforces private storage disk for all documents,planned,,
-R49.01,R49,Content,ContentBlockQuery,localized_content_blocks,packages/Rehla/Content/tests/Unit/ContentManagementTest.php,retrieves localized content blocks,planned,,
+R49.01,R49,Content,ContentBlockQuery,localized_content_blocks,packages/Rehla/Content/tests/Unit/ContentManagementTest.php,retrieves localized content blocks and audits lifecycle updates,passed,,
 R50.01,R50,Core,ErrorCode::INSUFFICIENT_BALANCE,rfc7807_problem_details,packages/Rehla/Core/tests/Unit/ErrorCodeTest.php,insufficient balance problem details,planned,,
 R50.02,R50,Core,ErrorCode::SERVICE_UNAVAILABLE,rfc7807_problem_details,packages/Rehla/Core/tests/Unit/ErrorCodeTest.php,service unavailable problem details,planned,,
 R50.03,R50,Core,ErrorCode::PRICE_CHANGED,rfc7807_problem_details,packages/Rehla/Core/tests/Unit/ErrorCodeTest.php,price changed problem details,planned,,
