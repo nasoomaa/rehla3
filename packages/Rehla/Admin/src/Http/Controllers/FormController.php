@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use JsonException;
 use Rehla\Catalog\Queries\ListAllServices;
 use Rehla\Forms\Actions\CreateFormDraft;
 use Rehla\Forms\Actions\PublishFormVersion;
 use Rehla\Forms\Actions\UpdateFormDraft;
 use Rehla\Forms\Data\FormFieldData;
+use Rehla\Forms\Enums\FieldType;
 use Rehla\Forms\Queries\ListFormVersions;
+use ValueError;
 
 final class FormController extends Controller
 {
@@ -62,7 +65,7 @@ final class FormController extends Controller
         if (is_string($rawSchema)) {
             try {
                 $schemaData = json_decode($rawSchema, true, 512, JSON_THROW_ON_ERROR);
-            } catch (\JsonException $e) {
+            } catch (JsonException $e) {
                 abort(422, 'Invalid JSON schema format: '.$e->getMessage());
             }
         } else {
@@ -92,8 +95,8 @@ final class FormController extends Controller
 
             $type = $fieldRaw['type'] ?? 'short_text';
             try {
-                \Rehla\Forms\Enums\FieldType::from((string) $type);
-            } catch (\ValueError) {
+                FieldType::from((string) $type);
+            } catch (ValueError) {
                 abort(422, "Field '{$key}' has an invalid type: {$type}.");
             }
 

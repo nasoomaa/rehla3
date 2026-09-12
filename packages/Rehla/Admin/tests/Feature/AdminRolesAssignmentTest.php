@@ -6,6 +6,9 @@ namespace Rehla\Admin\Tests\Feature;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use InvalidArgumentException;
 use Tests\Support\StaffTestHelper;
 
 it('assigns and revokes staff roles with valid MFA', function (): void {
@@ -44,11 +47,11 @@ it('rejects assigning role to a user without staff profile', function (): void {
     );
     $adminUser = Auth::guard('admin')->getProvider()->retrieveById($admin['id']);
 
-    $customerUserId = (string) \Illuminate\Support\Str::uuid();
-    \Illuminate\Support\Facades\DB::table('users')->insert([
+    $customerUserId = (string) Str::uuid();
+    DB::table('users')->insert([
         'id' => $customerUserId,
         'name' => 'Plain Customer',
-        'email' => 'customer-'.\Illuminate\Support\Str::random(5).'@example.com',
+        'email' => 'customer-'.Str::random(5).'@example.com',
         'password' => bcrypt('secret123'),
         'created_at' => now(),
         'updated_at' => now(),
@@ -57,5 +60,5 @@ it('rejects assigning role to a user without staff profile', function (): void {
     expect(fn () => $this->actingAs($adminUser, 'admin')->post('/admin/roles-permissions/assign', [
         'user_id' => $customerUserId,
         'role' => 'operations',
-    ]))->toThrow(\InvalidArgumentException::class);
+    ]))->toThrow(InvalidArgumentException::class);
 });
