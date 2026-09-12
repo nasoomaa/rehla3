@@ -6,9 +6,12 @@ namespace Rehla\Fulfillment;
 
 use Illuminate\Support\ServiceProvider;
 use Rehla\Audit\Contracts\AuditWriter;
+use Rehla\Documents\Actions\AttachDocument;
+use Rehla\Documents\Contracts\OwnedDocuments;
 use Rehla\Fulfillment\Actions\AddInternalNote;
 use Rehla\Fulfillment\Actions\CreateExecution;
 use Rehla\Fulfillment\Actions\RequestCustomerAction;
+use Rehla\Fulfillment\Actions\RespondToCustomerAction;
 use Rehla\Fulfillment\Actions\TransitionExecution;
 use Rehla\Fulfillment\Queries\GetExecutionForOperations;
 use Rehla\Fulfillment\Queries\GetOwnedExecution;
@@ -38,6 +41,15 @@ final class FulfillmentServiceProvider extends ServiceProvider
             $outboxWriter = $app->bound(OutboxWriter::class) ? $app->make(OutboxWriter::class) : null;
 
             return new RequestCustomerAction($auditWriter, $outboxWriter);
+        });
+
+        $this->app->bind(RespondToCustomerAction::class, function ($app) {
+            $ownedDocuments = $app->bound(OwnedDocuments::class) ? $app->make(OwnedDocuments::class) : null;
+            $attachDocument = $app->make(AttachDocument::class);
+            $auditWriter = $app->bound(AuditWriter::class) ? $app->make(AuditWriter::class) : null;
+            $outboxWriter = $app->bound(OutboxWriter::class) ? $app->make(OutboxWriter::class) : null;
+
+            return new RespondToCustomerAction($ownedDocuments, $attachDocument, $auditWriter, $outboxWriter);
         });
 
         $this->app->bind(GetOwnedExecution::class);
