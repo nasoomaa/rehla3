@@ -24,4 +24,15 @@ final class GetOwnedExecution
 
         return $execution->toExecutionDetails();
     }
+
+    public function handleByOrderId(string $accountId, string $orderId): ?ExecutionDetails
+    {
+        /** @var ServiceExecution|null $execution */
+        $execution = ServiceExecution::query()
+            ->where('order_id', $orderId)
+            ->where('account_id', $accountId)
+            ->first();
+
+        return $execution?->toExecutionDetails();
+    }
 }

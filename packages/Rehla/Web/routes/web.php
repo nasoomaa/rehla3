@@ -13,6 +13,10 @@ use Rehla\Web\Http\Controllers\AuthController;
 use Rehla\Web\Http\Controllers\HomeController;
 use Rehla\Web\Http\Controllers\LocaleController;
 use Rehla\Web\Http\Controllers\ServiceController;
+use Rehla\Web\Livewire\Account\CustomerActionResponse;
+use Rehla\Web\Livewire\Account\OrderCheckout;
+use Rehla\Web\Livewire\Account\OrderShow;
+use Rehla\Web\Livewire\Account\TopUpCreate;
 
 Route::middleware('web')->group(function (): void {
     // Locale switcher
@@ -35,6 +39,8 @@ Route::middleware('web')->group(function (): void {
     Route::middleware('auth:web')->group(function (): void {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+        Route::get('/checkout/{slug}', OrderCheckout::class)->name('checkout');
+
         Route::prefix('account')->name('account.')->group(function (): void {
             Route::get('/profile', ProfileController::class)->name('profile');
 
@@ -47,9 +53,12 @@ Route::middleware('web')->group(function (): void {
             Route::get('/wallet', WalletController::class)->name('wallet');
 
             Route::get('/top-ups', [TopUpController::class, 'index'])->name('top-ups.index');
+            Route::get('/top-ups/create', TopUpCreate::class)->name('top-ups.create');
 
             Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-            Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+            Route::get('/orders/{id}', OrderShow::class)->name('orders.show');
+
+            Route::get('/actions/{actionRequestId}', CustomerActionResponse::class)->name('actions.respond');
 
             Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
         });
