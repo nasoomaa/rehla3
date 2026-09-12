@@ -33,7 +33,7 @@ R20.01,R20,TopUps,ApproveTopUpAction,prevent_concurrent_double_approval,packages
 R21.01,R21,TopUps,RejectTopUpAction,rejected_status_with_reason,packages/Rehla/TopUps/tests/Feature/RejectTopUpTest.php,"rejects top-up with required rejection reason, audits and enqueues outbox, leaving wallet balance unchanged",passed,,
 R22.01,R22,Purchasing,ValidatePurchaseRequirementsQuery,service_must_be_active_to_purchase,packages/Rehla/Purchasing/tests/Integration/SubmitOrderTest.php,rejects order if service is deactivated without creating records,passed,,
 R23.01,R23,Web,CatalogBrowsePage,public_access_no_auth_required,packages/Rehla/Web/tests/Unit/PublicWebTest.php,renders public catalog browse without auth,planned,,
-R24.01,R24,Integrations,WhatsAppInquiryLinkGenerator,deep_link_format_sanitized,packages/Rehla/Integrations/tests/Unit/WhatsAppInquiryLinkTest.php,generates deep link with inquiry prefilled text,planned,,
+R24.01,R24,Integrations,WhatsAppInquiryLinkGenerator,deep_link_format_sanitized,packages/Rehla/Integrations/tests/Unit/WhatsAppInquiryLinkTest.php,generates deep link with inquiry prefilled text,passed,,
 R25.01,R25,Web,CheckoutWizard,checkout_session_validated,packages/Rehla/Web/tests/Unit/PurchaseJourneyTest.php,validates checkout step progression,planned,,
 R26.01,R26,Web,TravelerSelectionStep,traveler_ownership_verified,packages/Rehla/Web/tests/Unit/PurchaseJourneyTest.php,prevents selecting unowned traveler,planned,,
 R27.01,R27,Forms,DynamicFormEvaluator,form_fields_match_published_schema,packages/Rehla/Forms/tests/Unit/FieldValidationTest.php,validates each of the 11 field types correctly when valid and rejects invalid inputs,passed,,
