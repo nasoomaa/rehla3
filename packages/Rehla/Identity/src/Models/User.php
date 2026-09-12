@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Rehla\Identity\Data\ActorData;
 use Rehla\Identity\Data\UserData;
 
 class User extends Authenticatable
 {
-    use HasUuids, Notifiable;
+    use HasApiTokens, HasUuids, Notifiable;
 
     protected $table = 'users';
 
