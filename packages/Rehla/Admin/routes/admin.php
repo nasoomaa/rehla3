@@ -42,13 +42,18 @@ Route::middleware(['web'])->prefix('admin')->group(function (): void {
         Route::middleware(['admin.ability:services.manage'])->group(function (): void {
             Route::get('/services', [ServiceController::class, 'index'])->name('admin.services');
             Route::post('/services', [ServiceController::class, 'store']);
+            Route::put('/services/{id}/content', [ServiceController::class, 'updateContent']);
+            Route::post('/services/{id}/price', [ServiceController::class, 'changePrice']);
             Route::post('/services/{id}/publish', [ServiceController::class, 'publish']);
+            Route::post('/services/{id}/deactivate', [ServiceController::class, 'deactivate']);
         });
 
         // 3. Application Forms (forms.manage)
         Route::middleware(['admin.ability:forms.manage'])->group(function (): void {
             Route::get('/application-forms', [FormController::class, 'index'])->name('admin.forms');
             Route::post('/application-forms/{serviceId}/versions', [FormController::class, 'storeVersion']);
+            Route::post('/application-forms/{serviceId}/draft', [FormController::class, 'storeVersion']);
+            Route::put('/application-forms/{id}/draft', [FormController::class, 'updateDraft']);
             Route::post('/application-forms/{id}/publish', [FormController::class, 'publishVersion']);
         });
 
@@ -71,6 +76,8 @@ Route::middleware(['web'])->prefix('admin')->group(function (): void {
         Route::middleware(['admin.ability:bank_accounts.manage'])->group(function (): void {
             Route::get('/bank-accounts', [BankAccountController::class, 'index'])->name('admin.bank-accounts');
             Route::post('/bank-accounts', [BankAccountController::class, 'store']);
+            Route::put('/bank-accounts/{id}', [BankAccountController::class, 'update']);
+            Route::post('/bank-accounts/{id}/deactivate', [BankAccountController::class, 'deactivate']);
         });
 
         // 8. Top-up Requests (topups.review - sensitive, requires MFA)
@@ -108,6 +115,8 @@ Route::middleware(['web'])->prefix('admin')->group(function (): void {
         // 13. Roles & Permissions (roles.manage - sensitive, requires MFA)
         Route::middleware(['admin.ability:roles.manage'])->group(function (): void {
             Route::get('/roles-permissions', [RolePermissionController::class, 'index'])->name('admin.roles');
+            Route::post('/roles-permissions/assign', [RolePermissionController::class, 'assign']);
+            Route::post('/roles-permissions/revoke', [RolePermissionController::class, 'revoke']);
         });
 
         // 14. Audit Log (audit.view - sensitive, requires MFA)

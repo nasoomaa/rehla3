@@ -28,14 +28,19 @@ final class UpdateBankAccount
                 throw new DomainException("Bank account not found: {$bankAccountId}");
             }
 
-            $account->update([
+            $updatePayload = [
                 'bank_name_en' => $data->bankNameEn,
                 'bank_name_ar' => $data->bankNameAr,
                 'beneficiary_name' => $data->beneficiaryName,
                 'account_number' => $data->accountNumber,
-                'logo_document_id' => $data->logoDocumentId,
                 'sort_order' => $data->sortOrder,
-            ]);
+            ];
+
+            if ($data->logoDocumentId !== null) {
+                $updatePayload['logo_document_id'] = $data->logoDocumentId;
+            }
+
+            $account->update($updatePayload);
 
             if ($this->auditWriter !== null && $actorId !== null) {
                 $this->auditWriter->append(new AppendAuditData(
