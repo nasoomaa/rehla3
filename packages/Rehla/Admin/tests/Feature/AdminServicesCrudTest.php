@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rehla\Admin\Tests\Feature;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Rehla\Catalog\Queries\ListAllServices;
 use Tests\Support\StaffTestHelper;
 
@@ -54,8 +55,19 @@ it('performs full CRUD lifecycle on services', function (): void {
     $priceUpdated = collect(app(ListAllServices::class)->execute())->firstWhere('id', $service->id);
     expect($priceUpdated->currentPriceMinor)->toBe(15000000);
 
-    // 4. Publish service (requires form version and requirements, or let's test publish)
-    // Note: PublishService validates requirements and form if required, or we can test deactivation
+    // 4. Seed requirements + media directly so PublishService validation passes
+    DB::table('services')->where('id', $service->id)->update([
+        'requirements' => json_encode([['label_en' => 'Valid Passport', 'label_ar' => 'جواز سفر ساري']]),
+        'media' => json_encode([['type' => 'image', 'url' => 'https://example.com/img.jpg']]),
+    ]);
+
+    $this->actingAs($user, 'admin')->post("/admin/services/{$service->id}/publish")
+        ->assertRedirect('/admin/services');
+
+    $published = collect(app(ListAllServices::class)->execute())->firstWhere('id', $service->id);
+    expect($published->status->value)->toBe('published');
+
+    // 5. Deactivate the now-published service
     $this->actingAs($user, 'admin')->post("/admin/services/{$service->id}/deactivate")
         ->assertRedirect('/admin/services');
 
