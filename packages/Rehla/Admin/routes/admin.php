@@ -115,6 +115,8 @@ Route::middleware(['web'])->prefix('admin')->group(function (): void {
         // 13. Roles & Permissions (roles.manage - sensitive, requires MFA)
         Route::middleware(['admin.ability:roles.manage'])->group(function (): void {
             Route::get('/roles-permissions', [RolePermissionController::class, 'index'])->name('admin.roles');
+            Route::post('/roles-permissions/assign', [RolePermissionController::class, 'assign']);
+            Route::post('/roles-permissions/revoke', [RolePermissionController::class, 'revoke']);
         });
 
         // 14. Audit Log (audit.view - sensitive, requires MFA)
