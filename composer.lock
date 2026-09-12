@@ -3495,9 +3495,10 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Rehla/Core",
-                "reference": "cb155f8de7490d828deb9f89b1acfa3af6b19002"
+                "reference": "de4e79238ff1efa8a10639105b9b173adc114a75"
             },
             "require": {
+                "nesbot/carbon": "^2.71 || ^3.0",
                 "php": "^8.2"
             },
             "type": "library",
