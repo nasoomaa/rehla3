@@ -100,12 +100,299 @@ paths:
         '401':
           $ref: '#/components/responses/Problem'
 
+  /me:
+    get:
+      summary: Get authenticated customer profile
+      operationId: getMe
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User profile retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Problem'
+
+  /services:
+    get:
+      summary: List published catalog services
+      operationId: listServices
+      responses:
+        '200':
+          description: List of services
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Service'
+                  links:
+                    type: object
+                  meta:
+                    type: object
+
+  /services/{slug}:
+    get:
+      summary: Get service details by slug or id
+      operationId: getService
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Service details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Service'
+        '404':
+          $ref: '#/components/responses/Problem'
+
+  /services/{slug}/application-form:
+    get:
+      summary: Get service published application form
+      operationId: getServiceForm
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Application form details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+        '404':
+          $ref: '#/components/responses/Problem'
+
+  /travelers:
+    get:
+      summary: List customer owned travelers
+      operationId: listTravelers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of travelers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Traveler'
+        '401':
+          $ref: '#/components/responses/Problem'
+    post:
+      summary: Create new traveler profile
+      operationId: createTraveler
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Traveler created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Traveler'
+        '401':
+          $ref: '#/components/responses/Problem'
+        '422':
+          $ref: '#/components/responses/ValidationProblem'
+
+  /travelers/{id}:
+    get:
+      summary: Get specific traveler details
+      operationId: getTraveler
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Traveler details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Traveler'
+        '401':
+          $ref: '#/components/responses/Problem'
+        '404':
+          $ref: '#/components/responses/Problem'
+
+  /wallet:
+    get:
+      summary: Get customer wallet balance
+      operationId: getWallet
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Wallet balance
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Wallet'
+        '401':
+          $ref: '#/components/responses/Problem'
+
+  /wallet/entries:
+    get:
+      summary: Get wallet transaction ledger entries
+      operationId: getWalletEntries
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Ledger entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        '401':
+          $ref: '#/components/responses/Problem'
+
+  /bank-accounts:
+    get:
+      summary: List active bank accounts for top-up
+      operationId: listBankAccounts
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Bank accounts list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BankAccount'
+        '401':
+          $ref: '#/components/responses/Problem'
+
+  /top-ups:
+    get:
+      summary: List customer top-up requests
+      operationId: listTopUps
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Top-up requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TopUp'
+        '401':
+          $ref: '#/components/responses/Problem'
+    post:
+      summary: Submit new top-up request with receipt
+      operationId: createTopUp
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Top-up submitted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TopUp'
+        '401':
+          $ref: '#/components/responses/Problem'
+        '422':
+          $ref: '#/components/responses/ValidationProblem'
+
+  /uploads:
+    post:
+      summary: Upload private document file
+      operationId: uploadFile
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Document uploaded and scanned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      document_id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+        '401':
+          $ref: '#/components/responses/Problem'
+        '422':
+          $ref: '#/components/responses/ValidationProblem'
+
   /order-submissions:
     post:
       summary: Submit new order with frozen price and idempotency key
       operationId: submitOrder
       security:
         - bearerAuth: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
       responses:
         '201':
           description: Order created
@@ -168,6 +455,114 @@ components:
         email:
           type: string
           format: email
+
+    Service:
+      type: object
+      required:
+        - id
+        - slug
+        - name_en
+        - name_ar
+        - price_minor
+        - currency
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        name_en:
+          type: string
+        name_ar:
+          type: string
+        short_description_en:
+          type: string
+        short_description_ar:
+          type: string
+        price_minor:
+          type: integer
+        currency:
+          type: string
+
+    Traveler:
+      type: object
+      required:
+        - id
+        - full_name
+        - date_of_birth
+        - gender
+        - passport_number
+      properties:
+        id:
+          type: string
+          format: uuid
+        full_name:
+          type: string
+        date_of_birth:
+          type: string
+        gender:
+          type: string
+        passport_number:
+          type: string
+        passport_issued_at:
+          type: string
+        passport_expires_at:
+          type: string
+
+    Wallet:
+      type: object
+      required:
+        - currency
+        - balance_minor
+        - balance_formatted
+      properties:
+        currency:
+          type: string
+        balance_minor:
+          type: integer
+        balance_formatted:
+          type: string
+
+    BankAccount:
+      type: object
+      required:
+        - id
+        - bank_name_en
+        - bank_name_ar
+        - account_number
+        - beneficiary_name
+      properties:
+        id:
+          type: string
+        bank_name_en:
+          type: string
+        bank_name_ar:
+          type: string
+        account_number:
+          type: string
+        beneficiary_name:
+          type: string
+
+    TopUp:
+      type: object
+      required:
+        - id
+        - status
+        - amount_minor
+        - currency
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+        amount_minor:
+          type: integer
+        currency:
+          type: string
+        transaction_reference:
+          type: string
+        submitted_at:
+          type: string
 
   responses:
     Problem:

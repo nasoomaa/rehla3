@@ -10,6 +10,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Rehla\Api\Errors\ProblemDetailsFactory;
+use Rehla\Travelers\Exceptions\TravelerNotFound;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
@@ -25,6 +26,8 @@ final class FormatProblemDetails
             return ProblemDetailsFactory::make(422, 'VALIDATION_FAILED', errors: $e->errors());
         } catch (AuthorizationException $e) {
             return ProblemDetailsFactory::make(403, 'UNAUTHORIZED', detail: $e->getMessage() ?: null);
+        } catch (TravelerNotFound $e) {
+            return ProblemDetailsFactory::make(404, 'NOT_FOUND', detail: $e->getMessage() ?: null);
         } catch (HttpExceptionInterface $e) {
             $code = match ($e->getStatusCode()) {
                 401 => 'UNAUTHENTICATED',
