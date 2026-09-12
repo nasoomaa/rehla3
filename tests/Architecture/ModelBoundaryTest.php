@@ -15,7 +15,7 @@ it('forbids cross-package Eloquent model imports across all packages', function 
         }
 
         // Determine current package name from file path: packages/Rehla/<Package>/src/...
-        $relativePath = str_replace($packagesDir . '/', '', $file->getPathname());
+        $relativePath = str_replace($packagesDir.'/', '', $file->getPathname());
         $parts = explode('/', $relativePath);
         $currentPackage = $parts[0] ?? '';
 

@@ -1,10 +1,10 @@
 <?php
 
-$mapPath = __DIR__ . '/../docs/architecture/rehla-package-map.json';
+$mapPath = __DIR__.'/../docs/architecture/rehla-package-map.json';
 $map = json_decode(file_get_contents($mapPath), true, flags: JSON_THROW_ON_ERROR);
 
-$packagesDir = __DIR__ . '/../packages/Rehla';
-if (!is_dir($packagesDir)) {
+$packagesDir = __DIR__.'/../packages/Rehla';
+if (! is_dir($packagesDir)) {
     mkdir($packagesDir, 0755, true);
 }
 
@@ -20,43 +20,43 @@ foreach ($map['packages'] as $package => $deps) {
 
     // 1. composer.json
     $requires = [
-        "php" => "^8.2"
+        'php' => '^8.2',
     ];
     foreach ($deps as $dep) {
         $depLower = strtolower($dep);
-        $requires["rehla/{$depLower}"] = "@dev";
+        $requires["rehla/{$depLower}"] = '@dev';
     }
 
     $composerData = [
-        "name" => "rehla/{$lowerName}",
-        "description" => "Rehla {$package} Package",
-        "type" => "library",
-        "license" => "proprietary",
-        "require" => $requires,
-        "autoload" => [
-            "psr-4" => [
-                "Rehla\\{$package}\\" => "src/"
-            ]
+        'name' => "rehla/{$lowerName}",
+        'description' => "Rehla {$package} Package",
+        'type' => 'library',
+        'license' => 'proprietary',
+        'require' => $requires,
+        'autoload' => [
+            'psr-4' => [
+                "Rehla\\{$package}\\" => 'src/',
+            ],
         ],
-        "autoload-dev" => [
-            "psr-4" => [
-                "Rehla\\{$package}\\Tests\\" => "tests/"
-            ]
+        'autoload-dev' => [
+            'psr-4' => [
+                "Rehla\\{$package}\\Tests\\" => 'tests/',
+            ],
         ],
-        "extra" => [
-            "laravel" => [
-                "providers" => [
-                    "Rehla\\{$package}\\{$package}ServiceProvider"
-                ]
-            ]
+        'extra' => [
+            'laravel' => [
+                'providers' => [
+                    "Rehla\\{$package}\\{$package}ServiceProvider",
+                ],
+            ],
         ],
-        "minimum-stability" => "dev",
-        "prefer-stable" => true
+        'minimum-stability' => 'dev',
+        'prefer-stable' => true,
     ];
 
     file_put_contents(
         "{$pkgDir}/composer.json",
-        json_encode($composerData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n"
+        json_encode($composerData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)."\n"
     );
 
     // 2. ServiceProvider

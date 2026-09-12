@@ -54,7 +54,7 @@ it('verifies migration Schema::create calls correspond to declared table owners'
     // Assert that every created table in migrations is declared in table-ownership.json
     foreach ($createdTables as $tableName => $sourceFiles) {
         expect(array_key_exists($tableName, $declaredTables))
-            ->toBeTrue("Table '{$tableName}' created in migration [".implode(', ', $sourceFiles)."] is not registered in table-ownership.json");
+            ->toBeTrue("Table '{$tableName}' created in migration [".implode(', ', $sourceFiles).'] is not registered in table-ownership.json');
         expect(count($sourceFiles))
             ->toBe(1, "Table '{$tableName}' is created in multiple migrations: ".implode(', ', $sourceFiles));
     }

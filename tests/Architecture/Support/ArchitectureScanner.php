@@ -25,6 +25,7 @@ final class ArchitectureScanner
     public static function scanFileReferences(string $filePath): array
     {
         $code = (string) file_get_contents($filePath);
+
         return self::scanCodeReferences($code, $filePath);
     }
 
@@ -59,7 +60,7 @@ final class ArchitectureScanner
                         if ($tokens[$i] === ',') {
                             $item = trim(self::stringifyTokens($groupItem));
                             if ($item !== '') {
-                                $full = trim($prefix, "\\ \t\n\r\0\x0B") . '\\' . ltrim($item, '\\');
+                                $full = trim($prefix, "\\ \t\n\r\0\x0B").'\\'.ltrim($item, '\\');
                                 self::collectIfRehla($full, $filePath, $line, $references);
                             }
                             $groupItem = [];
@@ -70,7 +71,7 @@ final class ArchitectureScanner
                     }
                     $item = trim(self::stringifyTokens($groupItem));
                     if ($item !== '') {
-                        $full = trim($prefix, "\\ \t\n\r\0\x0B") . '\\' . ltrim($item, '\\');
+                        $full = trim($prefix, "\\ \t\n\r\0\x0B").'\\'.ltrim($item, '\\');
                         self::collectIfRehla($full, $filePath, $line, $references);
                     }
                     // skip to semicolon
@@ -90,6 +91,7 @@ final class ArchitectureScanner
                         self::collectIfRehla($part, $filePath, $line, $references);
                     }
                 }
+
                 continue;
             }
 
@@ -110,6 +112,7 @@ final class ArchitectureScanner
         foreach ($tokens as $token) {
             $str .= is_array($token) ? $token[1] : $token;
         }
+
         return $str;
     }
 

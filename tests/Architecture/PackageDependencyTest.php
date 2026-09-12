@@ -11,7 +11,7 @@ it('enforces package dependency map and forbids cycles and invalid imports', fun
 
     foreach ($packageMap as $packageName => $allowedDeps) {
         $srcDir = "{$packagesDir}/{$packageName}/src";
-        if (!is_dir($srcDir)) {
+        if (! is_dir($srcDir)) {
             continue;
         }
 
@@ -38,11 +38,12 @@ it('enforces package dependency map and forbids cycles and invalid imports', fun
                 // Core cannot import any other Rehla package
                 if ($packageName === 'Core') {
                     $violations[] = "[Core Violation] {$file->getPathname()}:{$ref['line']} Core must not import Rehla\\{$target}";
+
                     continue;
                 }
 
                 // Check allowed declared dependencies
-                if (!in_array($target, $allowedDeps, true)) {
+                if (! in_array($target, $allowedDeps, true)) {
                     $violations[] = "[Dependency Violation] {$file->getPathname()}:{$ref['line']} Package '{$packageName}' is not permitted to import 'Rehla\\{$target}'";
                 }
             }
