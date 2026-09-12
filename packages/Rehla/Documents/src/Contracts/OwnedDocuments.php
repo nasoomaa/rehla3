@@ -13,5 +13,5 @@ interface OwnedDocuments
      * @param  list<string>  $documentIds
      * @return list<DocumentRef>
      */
-    public function assertCleanOwned(array $documentIds, string $ownerId, DocumentPurpose $purpose): array;
+    public function assertCleanOwned(array $documentIds, string $ownerId, ?DocumentPurpose $purpose = null): array;
 }

@@ -17,5 +17,6 @@ final readonly class CreatePaidOrderData
         public ServiceSnapshotData $serviceSnapshot,
         public TravelerSnapshotData $travelerSnapshot,
         public FormSnapshotData $formSnapshot,
+        public ?string $id = null,
     ) {}
 }

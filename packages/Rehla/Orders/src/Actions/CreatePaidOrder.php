@@ -29,7 +29,7 @@ final class CreatePaidOrder implements OrderWriter
         }
 
         return DB::transaction(function () use ($data): PaidOrderData {
-            $orderId = (string) Str::uuid();
+            $orderId = $data->id ?? (string) Str::uuid();
             $now = CarbonImmutable::now();
 
             $order = Order::create([

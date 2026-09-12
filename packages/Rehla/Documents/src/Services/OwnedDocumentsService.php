@@ -18,7 +18,7 @@ final class OwnedDocumentsService implements OwnedDocuments
      * @param  list<string>  $documentIds
      * @return list<DocumentRef>
      */
-    public function assertCleanOwned(array $documentIds, string $ownerId, DocumentPurpose $purpose): array
+    public function assertCleanOwned(array $documentIds, string $ownerId, ?DocumentPurpose $purpose = null): array
     {
         if (empty($documentIds)) {
             return [];
@@ -36,7 +36,7 @@ final class OwnedDocumentsService implements OwnedDocuments
                 throw new DocumentAccessDenied("Document {$doc->id} is not owned by account {$ownerId}");
             }
 
-            if ($doc->purpose !== $purpose) {
+            if ($purpose !== null && $doc->purpose !== $purpose) {
                 throw new DocumentAccessDenied("Document {$doc->id} purpose does not match {$purpose->value}");
             }
 
