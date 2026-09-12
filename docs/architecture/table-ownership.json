@@ -30,6 +30,7 @@
     "order_service_snapshots": "Orders",
     "order_traveler_snapshots": "Orders",
     "order_form_snapshots": "Orders",
+    "purchase_attempts": "Purchasing",
     "executions": "Fulfillment",
     "customer_action_requests": "Fulfillment",
     "notifications": "Notifications",
