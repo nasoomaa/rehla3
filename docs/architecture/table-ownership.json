@@ -31,7 +31,7 @@
     "customer_action_requests": "Fulfillment",
     "notifications": "Notifications",
     "content_blocks": "Content",
-    "outbox_messages": "Integrations",
+    "outbox_messages": "Notifications",
     "cache": "Core",
     "cache_locks": "Core",
     "jobs": "Core",
