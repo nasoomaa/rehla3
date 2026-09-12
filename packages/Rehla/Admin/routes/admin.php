@@ -52,6 +52,8 @@ Route::middleware(['web'])->prefix('admin')->group(function (): void {
         Route::middleware(['admin.ability:forms.manage'])->group(function (): void {
             Route::get('/application-forms', [FormController::class, 'index'])->name('admin.forms');
             Route::post('/application-forms/{serviceId}/versions', [FormController::class, 'storeVersion']);
+            Route::post('/application-forms/{serviceId}/draft', [FormController::class, 'storeVersion']);
+            Route::put('/application-forms/{id}/draft', [FormController::class, 'updateDraft']);
             Route::post('/application-forms/{id}/publish', [FormController::class, 'publishVersion']);
         });
 
