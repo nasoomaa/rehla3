@@ -77,58 +77,58 @@ Every developer and AI agent working on this project must strictly adhere to the
 
 ---
 
-## 🚀 متطلبات التشغيل والإعداد (Prerequisites & Setup)
+## 🚀 Prerequisites & Setup
 
-### المتطلبات الأساسية
-- **PHP**: 8.5 أو أحدث (مع إضافات `pdo_pgsql`, `mbstring`, `bcmath`, `xml`).
-- **PostgreSQL**: الإصدار 18 أو أحدث مع تفعيل امتداد `citext`.
-- **Composer**: 2.8 أو أحدث.
-- **Node.js**: 24+ مع **npm**.
+### Requirements
+- **PHP**: 8.5 or higher (with `pdo_pgsql`, `mbstring`, `bcmath`, `xml` extensions).
+- **PostgreSQL**: Version 18 or higher with `citext` extension enabled.
+- **Composer**: 2.8 or higher.
+- **Node.js**: 24+ with **npm**.
 
-### الإعداد الأولي
+### Setup
 ```bash
-# تثبيت الاعتماديات
+# Install dependencies
 composer install
 npm ci
 
-# إعداد البيئة ومفتاح التطبيق
+# Setup .env file and app key
 cp .env.example .env
 php artisan key:generate
 
-# بناء الأصول الأمامية
+# Build frontend assets
 npm run build
 ```
 
 ---
 
-## 🧪 الاختبارات وبوابات الجودة (Verification & Testing)
+## 🧪 Verification & Testing
 
-تخضع كافة التغييرات لبوابات فحص صارمة قبل الاعتماد:
+All changes must pass strict verification gates before being accepted:
 
 ```bash
-# تشغيل بوابة التحقق الكاملة (Pint + Parallel Tests)
+# Run the complete verification gate (Pint + Parallel Tests)
 composer verify
 
-# تشغيل اختبارات معمارية الحزم والحدود
+# Run package architecture and boundary tests
 php artisan test tests/Architecture
 
-# تشغيل اختبارات جميع حزم رحلة
+# Run all package tests
 php artisan test packages/Rehla
 
-# فحص التنسيق البرمجي والتزامه بمعايير Laravel Pint
+# Check code style and compliance with Laravel Pint standards
 ./vendor/bin/pint --test
 ```
 
-> **تنبيه:** تشترط اختبارات التكامل بيئة PostgreSQL حقيقية بقاعدة بيانات ينتهي اسمها بـ `_testing` (مثل `rehla_testing`). يُمنع استخدام SQLite لاختبارات التكامل المعتمدة على الـ Triggers والأقفال والتزامن.
+> **Note:** Integration tests require a real PostgreSQL environment with a database name ending in `_testing` (e.g., `rehla_testing`). SQLite is prohibited for integration tests that rely on triggers, locks, and concurrency.
 
 ---
 
-## 📚 المراجع والمستندات التفصيلية
+## 📚 References & Detailed Documentation
 
-- **مواصفات المعمارية والحزم:** [`docs/REHLA-LARAVEL-PACKAGE-ARCHITECTURE.md`](docs/REHLA-LARAVEL-PACKAGE-ARCHITECTURE.md)
-- **مفهوم المنتج ورحلة المستخدم (R01–R65):** [`docs/REHLA-PROJECT-CONCEPT-AND-USER-JOURNEY.md`](docs/REHLA-PROJECT-CONCEPT-AND-USER-JOURNEY.md)
-- **خريطة اعتماديات الحزم:** [`docs/architecture/rehla-package-map.json`](docs/architecture/rehla-package-map.json)
-- **سجل ملكية الجداول:** [`docs/architecture/table-ownership.json`](docs/architecture/table-ownership.json)
-- **قرارات التصميم المعماري (ADRs):** [`docs/adr/`](docs/adr/)
-- **سجل القبول الذري للمتطلبات:** [`docs/requirements/rehla-phase-1-acceptance.csv`](docs/requirements/rehla-phase-1-acceptance.csv)
-- **خطط التنفيذ المرحلية:** [`docs/superpowers/plans/`](docs/superpowers/plans/)
+- **Architectural Specifications & Packages:** [`docs/REHLA-LARAVEL-PACKAGE-ARCHITECTURE.md`](docs/REHLA-LARAVEL-PACKAGE-ARCHITECTURE.md)
+- **Product Concept & User Journey (R01–R65):** [`docs/REHLA-PROJECT-CONCEPT-AND-USER-JOURNEY.md`](docs/REHLA-PROJECT-CONCEPT-AND-USER-JOURNEY.md)
+- **Package Dependency Map:** [`docs/architecture/rehla-package-map.json`](docs/architecture/rehla-package-map.json)
+- **Table Ownership Registry:** [`docs/architecture/table-ownership.json`](docs/architecture/table-ownership.json)
+- **Architectural Decision Records (ADRs):** [`docs/adr/`](docs/adr/)
+- **Phase 1 Acceptance Register:** [`docs/requirements/rehla-phase-1-acceptance.csv`](docs/requirements/rehla-phase-1-acceptance.csv)
+- **Phase Plans:** [`docs/superpowers/plans/`](docs/superpowers/plans/)
