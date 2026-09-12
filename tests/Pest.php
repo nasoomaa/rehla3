@@ -15,10 +15,10 @@ use Tests\TestCase;
 */
 
 pest()->extend(TestCase::class)
-    ->in('Feature', 'Integration', 'Architecture', '../packages');
+    ->in('Feature', 'Integration', 'Architecture', 'Security', 'Performance', '../packages');
 
 pest()->use(DatabaseTransactions::class)
-    ->in('Feature', 'Integration', '../packages');
+    ->in('Feature', 'Integration', 'Security', 'Performance', '../packages');
 
 /*
 |--------------------------------------------------------------------------

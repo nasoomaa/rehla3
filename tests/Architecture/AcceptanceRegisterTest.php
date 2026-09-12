@@ -15,3 +15,34 @@ it('maps every product section and mandatory atomic family', function (): void {
         expect($ids)->toContain($id);
     }
 });
+
+it('verifies every acceptance register row is either verified with evidence or deferred with reason', function (): void {
+    $csvPath = base_path('docs/requirements/rehla-phase-1-acceptance.csv');
+    $handle = fopen($csvPath, 'r');
+    $header = fgetcsv($handle);
+    $map = array_flip($header);
+
+    $unresolved = [];
+
+    while (($row = fgetcsv($handle)) !== false) {
+        $id = trim($row[$map['acceptance_id']]);
+        $status = trim($row[$map['status']]);
+        $evidence = trim($row[$map['evidence']] ?? '');
+        $deferredReason = trim($row[$map['deferred_reason']] ?? '');
+
+        if ($status === 'verified') {
+            if ($evidence === '') {
+                $unresolved[] = "{$id}: verified without evidence";
+            }
+        } elseif ($status === 'deferred') {
+            if ($deferredReason === '') {
+                $unresolved[] = "{$id}: deferred without reason";
+            }
+        } else {
+            $unresolved[] = "{$id}: status '{$status}' is not release ready";
+        }
+    }
+    fclose($handle);
+
+    expect($unresolved)->toBeEmpty();
+});
