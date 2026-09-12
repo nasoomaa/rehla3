@@ -42,7 +42,10 @@ Route::middleware(['web'])->prefix('admin')->group(function (): void {
         Route::middleware(['admin.ability:services.manage'])->group(function (): void {
             Route::get('/services', [ServiceController::class, 'index'])->name('admin.services');
             Route::post('/services', [ServiceController::class, 'store']);
+            Route::put('/services/{id}/content', [ServiceController::class, 'updateContent']);
+            Route::post('/services/{id}/price', [ServiceController::class, 'changePrice']);
             Route::post('/services/{id}/publish', [ServiceController::class, 'publish']);
+            Route::post('/services/{id}/deactivate', [ServiceController::class, 'deactivate']);
         });
 
         // 3. Application Forms (forms.manage)
