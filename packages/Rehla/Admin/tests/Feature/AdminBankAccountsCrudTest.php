@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rehla\Admin\Tests\Feature;
 
 use Illuminate\Support\Facades\Auth;
+use Rehla\TopUps\Queries\ListAllBankAccounts;
 use Tests\Support\StaffTestHelper;
 
 it('manages bank accounts with full CRUD and active status toggle', function (): void {
@@ -20,7 +21,7 @@ it('manages bank accounts with full CRUD and active status toggle', function ():
         'sort_order' => 1,
     ])->assertRedirect('/admin/bank-accounts');
 
-    $accounts = app(\Rehla\TopUps\Queries\ListAllBankAccounts::class)->execute();
+    $accounts = app(ListAllBankAccounts::class)->execute();
     $account = collect($accounts)->firstWhere('accountNumber', '1234567890');
     expect($account)->not->toBeNull();
 
@@ -33,7 +34,7 @@ it('manages bank accounts with full CRUD and active status toggle', function ():
         'sort_order' => 2,
     ])->assertRedirect('/admin/bank-accounts');
 
-    $updatedAccounts = app(\Rehla\TopUps\Queries\ListAllBankAccounts::class)->execute();
+    $updatedAccounts = app(ListAllBankAccounts::class)->execute();
     $updated = collect($updatedAccounts)->firstWhere('id', $account->id);
     expect($updated->bankNameEn)->toBe('ONB Updated')
         ->and($updated->beneficiaryName)->toBe('Rehla Travel Services');
@@ -42,7 +43,7 @@ it('manages bank accounts with full CRUD and active status toggle', function ():
     $this->actingAs($user, 'admin')->post("/admin/bank-accounts/{$account->id}/deactivate")
         ->assertRedirect('/admin/bank-accounts');
 
-    $deactivatedAccounts = app(\Rehla\TopUps\Queries\ListAllBankAccounts::class)->execute();
+    $deactivatedAccounts = app(ListAllBankAccounts::class)->execute();
     $deactivated = collect($deactivatedAccounts)->firstWhere('id', $account->id);
     expect($deactivated->active)->toBeFalse();
 });

@@ -7,6 +7,7 @@ namespace Rehla\Admin\Tests\Feature;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Rehla\Forms\Queries\ListFormVersions;
 use Tests\Support\StaffTestHelper;
 
 it('creates, updates draft schema, and publishes application form versions', function (): void {
@@ -42,7 +43,7 @@ it('creates, updates draft schema, and publishes application form versions', fun
     ]);
     $createRes->assertRedirect('/admin/application-forms');
 
-    $forms = app(\Rehla\Forms\Queries\ListFormVersions::class)->execute();
+    $forms = app(ListFormVersions::class)->execute();
     $draft = collect($forms)->firstWhere('serviceId', $serviceId);
     expect($draft)->not->toBeNull();
 
@@ -61,7 +62,7 @@ it('creates, updates draft schema, and publishes application form versions', fun
     $publishRes = $this->actingAs($user, 'admin')->post("/admin/application-forms/{$draft->id}/publish");
     $publishRes->assertRedirect('/admin/application-forms');
 
-    $updatedForms = app(\Rehla\Forms\Queries\ListFormVersions::class)->execute();
+    $updatedForms = app(ListFormVersions::class)->execute();
     $published = collect($updatedForms)->firstWhere('id', $draft->id);
     expect($published->status->value)->toBe('published');
 });

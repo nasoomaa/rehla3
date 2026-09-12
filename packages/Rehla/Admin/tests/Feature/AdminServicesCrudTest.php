@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rehla\Admin\Tests\Feature;
 
 use Illuminate\Support\Facades\Auth;
+use Rehla\Catalog\Queries\ListAllServices;
 use Tests\Support\StaffTestHelper;
 
 it('performs full CRUD lifecycle on services', function (): void {
@@ -24,7 +25,7 @@ it('performs full CRUD lifecycle on services', function (): void {
         'price_minor' => 12000000,
     ])->assertRedirect('/admin/services');
 
-    $services = app(\Rehla\Catalog\Queries\ListAllServices::class)->execute();
+    $services = app(ListAllServices::class)->execute();
     $service = collect($services)->firstWhere('nameEn', 'Egypt Tourist Visa');
     expect($service)->not->toBeNull();
 
@@ -40,7 +41,7 @@ it('performs full CRUD lifecycle on services', function (): void {
         'expected_duration_ar' => 'يوم عمل واحد',
     ])->assertRedirect('/admin/services');
 
-    $updatedServices = app(\Rehla\Catalog\Queries\ListAllServices::class)->execute();
+    $updatedServices = app(ListAllServices::class)->execute();
     $updatedService = collect($updatedServices)->firstWhere('id', $service->id);
     expect($updatedService->nameEn)->toBe('Egypt Express Visa')
         ->and($updatedService->expectedDurationEn)->toBe('1 business day');
@@ -50,7 +51,7 @@ it('performs full CRUD lifecycle on services', function (): void {
         'new_price_minor' => 15000000,
     ])->assertRedirect('/admin/services');
 
-    $priceUpdated = collect(app(\Rehla\Catalog\Queries\ListAllServices::class)->execute())->firstWhere('id', $service->id);
+    $priceUpdated = collect(app(ListAllServices::class)->execute())->firstWhere('id', $service->id);
     expect($priceUpdated->currentPriceMinor)->toBe(15000000);
 
     // 4. Publish service (requires form version and requirements, or let's test publish)
@@ -58,6 +59,6 @@ it('performs full CRUD lifecycle on services', function (): void {
     $this->actingAs($user, 'admin')->post("/admin/services/{$service->id}/deactivate")
         ->assertRedirect('/admin/services');
 
-    $deactivated = collect(app(\Rehla\Catalog\Queries\ListAllServices::class)->execute())->firstWhere('id', $service->id);
+    $deactivated = collect(app(ListAllServices::class)->execute())->firstWhere('id', $service->id);
     expect($deactivated->status->value)->toBe('deactivated');
 });
