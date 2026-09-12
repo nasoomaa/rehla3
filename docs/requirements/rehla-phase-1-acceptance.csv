@@ -24,7 +24,7 @@ R11.01,R11,Travelers,SaveTravelerAction,traveler_belongs_to_account,packages/Reh
 R12.01,R12,Travelers,PassportNormalizer,unique_normalized_passport,packages/Rehla/Travelers/tests/Integration/PassportUniquenessTest.php,rejects duplicate passport across two concurrent or distinct save attempts,passed,commit:4580078,
 R13.01,R13,Orders,OrderSnapshotContract,order_and_traveler_snapshot_immutable,packages/Rehla/Orders/tests/Unit/OrderImmutabilityTest.php,verifies immutable order snapshots,planned,,
 R14.01,R14,Purchasing,SubmitOrderAction,atomic_wallet_deduction_and_order_create,packages/Rehla/Purchasing/tests/Unit/SubmitOrderTest.php,executes atomic order submission and wallet debit,planned,,
-R15.01,R15,Wallet,AppendLedgerEntryAction,ledger_immutable_and_non_negative_balance,packages/Rehla/Wallet/tests/Unit/WalletLedgerTest.php,asserts wallet balance equals ledger sum without negative balance,planned,,
+R15.01,R15,Wallet,AppendLedgerEntryAction,ledger_immutable_and_non_negative_balance,packages/Rehla/Wallet/tests/Integration/WalletLedgerTest.php,derives every balance change from append-only ledger entries and protects ledger against SQL mutations,passed,,
 R16.01,R16,TopUps,SubmitTopUpAction,topup_request_status_pending,packages/Rehla/TopUps/tests/Unit/SubmitTopUpTest.php,creates pending top up request with receipt,planned,,
 R17.01,R17,TopUps,CompanyBankAccountQuery,bank_account_is_active,packages/Rehla/TopUps/tests/Unit/BankAccountTest.php,retrieves active company bank accounts,planned,,
 R18.01,R18,TopUps,UploadReceiptAction,receipt_in_private_storage,packages/Rehla/TopUps/tests/Unit/SubmitTopUpTest.php,verifies receipt stored in private disk,planned,,
