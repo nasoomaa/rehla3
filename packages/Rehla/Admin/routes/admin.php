@@ -74,6 +74,8 @@ Route::middleware(['web'])->prefix('admin')->group(function (): void {
         Route::middleware(['admin.ability:bank_accounts.manage'])->group(function (): void {
             Route::get('/bank-accounts', [BankAccountController::class, 'index'])->name('admin.bank-accounts');
             Route::post('/bank-accounts', [BankAccountController::class, 'store']);
+            Route::put('/bank-accounts/{id}', [BankAccountController::class, 'update']);
+            Route::post('/bank-accounts/{id}/deactivate', [BankAccountController::class, 'deactivate']);
         });
 
         // 8. Top-up Requests (topups.review - sensitive, requires MFA)

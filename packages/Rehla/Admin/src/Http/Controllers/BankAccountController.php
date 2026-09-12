@@ -10,6 +10,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Rehla\TopUps\Actions\CreateBankAccount;
+use Rehla\TopUps\Actions\DeactivateBankAccount;
+use Rehla\TopUps\Actions\UpdateBankAccount;
 use Rehla\TopUps\Data\CreateBankAccountData;
 use Rehla\TopUps\Queries\ListAllBankAccounts;
 
@@ -45,5 +47,40 @@ final class BankAccountController extends Controller
         ), actorId: $actorId);
 
         return redirect('/admin/bank-accounts')->with('success', 'Bank account created successfully.');
+    }
+
+    public function update(string $id, Request $request, UpdateBankAccount $updateBankAccount): RedirectResponse
+    {
+        $validated = $request->validate([
+            'bank_name_en' => ['required', 'string', 'max:255'],
+            'bank_name_ar' => ['required', 'string', 'max:255'],
+            'beneficiary_name' => ['required', 'string', 'max:255'],
+            'account_number' => ['required', 'string', 'max:100'],
+            'sort_order' => ['nullable', 'integer'],
+        ]);
+
+        $actorId = (string) Auth::guard('admin')->id();
+
+        $updateBankAccount->execute(
+            bankAccountId: $id,
+            data: new CreateBankAccountData(
+                bankNameEn: $validated['bank_name_en'],
+                bankNameAr: $validated['bank_name_ar'],
+                beneficiaryName: $validated['beneficiary_name'],
+                accountNumber: $validated['account_number'],
+                sortOrder: (int) ($validated['sort_order'] ?? 0),
+            ),
+            actorId: $actorId,
+        );
+
+        return redirect('/admin/bank-accounts')->with('success', 'Bank account updated successfully.');
+    }
+
+    public function deactivate(string $id, DeactivateBankAccount $deactivateBankAccount): RedirectResponse
+    {
+        $actorId = (string) Auth::guard('admin')->id();
+        $deactivateBankAccount->execute($id, actorId: $actorId);
+
+        return redirect('/admin/bank-accounts')->with('success', 'Bank account deactivated successfully.');
     }
 }
