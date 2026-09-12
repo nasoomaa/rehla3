@@ -8,4 +8,6 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command('rehla:outbox-worker')->everyMinute()->withoutOverlapping();
+Schedule::command('rehla:outbox-worker')->everyMinute()->withoutOverlapping()->onOneServer();
+Schedule::command('rehla:recover-expired-leases')->everyFiveMinutes()->withoutOverlapping()->onOneServer();
+Schedule::command('rehla:reconcile-wallets')->hourly()->withoutOverlapping()->onOneServer();

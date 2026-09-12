@@ -65,7 +65,7 @@
         ],
         "verify": [
             "@lint",
-            "@php artisan test --parallel"
+            "@php artisan test --without-tty"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
